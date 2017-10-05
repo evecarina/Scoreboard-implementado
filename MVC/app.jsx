@@ -31,7 +31,24 @@ class Timer extends React.Component {
             </div>
      );
   }
- 
+  // componentDidMount
+  startTimer () {
+    this.timer = setInterval( () => {
+    this.setState ({
+      time : this.state.time+1
+    });}, 1000);
+  }
+  //componentWillUnmount
+  stopTimer () {
+    clearInterval(this.timer);
+  }
+  resetTimer(){
+    clearInterval(this.timer);
+    this.setState ({
+      time :0
+    });
+  }
+}
 
 class Model{
   constructor(){
@@ -102,11 +119,7 @@ const Header = ({model})=>{
                   <tr><td>Total ponits:</td><td>{model.addScore()}</td></tr>
                 </tbody></table>
               </div>
-              <div className="stopwatch">
-                <h2>stopwatch</h2>
-                <h1 className="stopwatch-time">0</h1>
-                <button>start</button><button>reset</button>
-              </div>
+              
               <div className="stopwatch">
                 <Timer title = "stopwatch"/>
               </div>
